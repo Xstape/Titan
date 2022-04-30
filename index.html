@@ -22,6 +22,12 @@
     <div class="waterLevel">
         <span></span>
     </div>
+
+    <div class="control">
+        <input id="openControl" type="range" min="0" max="100" value="10" step="1" oninput="this.nextElementSibling.value = this.value + '%'">
+        <output>10%</output>
+    </div>
+
     <script src="https://kit.fontawesome.com/5e4c297160.js" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 </body>

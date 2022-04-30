@@ -16,14 +16,19 @@ function sleep(ms) {
     );
 }
 
+var slider = document.getElementById('openControl');
 const waterLevel = document.querySelector('.waterLevel span');
+
 async function delayedGreeting() {
     for (step = 0; step <= 100; step++) {
         content('#out', step);
         // An easier way to build a level line from bottom to top
-        waterLevel.style.height = 400 - step * 4 + "px";
+        waterLevel.style.height = 400 - slider.value * 4 + "px";
+        // waterLevel.style.height = 400 - step * 4 + "px";
         await sleep(1000);
     }
 }
-  
+
 delayedGreeting();
+
+var slider = document.getElementById('openControl');
