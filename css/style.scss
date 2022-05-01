@@ -20,6 +20,13 @@ body {
     }
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .checkbox {
     opacity: 0;
     position: absolute;
@@ -91,4 +98,8 @@ body {
         color: #fff;
         pointer-events: none;
     }
+}
+
+.assembly {
+    position: absolute;
 }
