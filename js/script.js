@@ -16,21 +16,21 @@ function sleep(ms) {
     );
 }
 
-var slider = document.getElementById('openControl');
-const waterLevel = document.querySelector('.waterLevel span');
-const level = document.querySelector('.waterLevel').offsetHeight;
+const openControl = document.getElementById('openControl'),
+    waterLevel = document.querySelector('.waterLevel span'),
+    level = document.querySelector('.waterLevel').offsetHeight,
+    maxFillingSpeed = 200;
 
-async function delayedGreeting() {
-    for (step = 0; step <= 100; step++) {
-        content('#out', step);
-        // An easier way to build a level line from bottom to top
-        waterLevel.style.height = level - slider.value * (level / 100) + "px";
-        // waterLevel.style.height = level - slider.value * (level / slider.value) + "px";
-        // waterLevel.style.height = 400 - step * 4 + "px";
+async function delayedCycle() {
+    let waterLevelHeight = 0;
+    for (step = 0; step <= 1000; step++) {   
+        content('#L', waterLevelHeight);
+        // Расчет шага роста уровня воды с учетом степени открытия вентиля
+        waterLevelHeight += maxFillingSpeed * (openControl.value / 100);
+        // Конвертация и вывод высоты уровня воды в данную секунду
+        waterLevel.style.height = level - waterLevelHeight * (level / 2000) + "px";
         await sleep(1000);
     }
 }
 
-delayedGreeting();
-
-var slider = document.getElementById('openControl');
+delayedCycle();
