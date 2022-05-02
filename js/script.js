@@ -18,13 +18,14 @@ function sleep(ms) {
 
 var slider = document.getElementById('openControl');
 const waterLevel = document.querySelector('.waterLevel span');
-const level = document.querySelector('.waterLevel');
+const level = document.querySelector('.waterLevel').offsetHeight;
 
 async function delayedGreeting() {
     for (step = 0; step <= 100; step++) {
         content('#out', step);
         // An easier way to build a level line from bottom to top
-        waterLevel.style.height = level.style.height - slider.value * 4 + "px";
+        waterLevel.style.height = level - slider.value * (level / 100) + "px";
+        // waterLevel.style.height = level - slider.value * (level / slider.value) + "px";
         // waterLevel.style.height = 400 - step * 4 + "px";
         await sleep(1000);
     }
