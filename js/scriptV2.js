@@ -11,6 +11,13 @@ function content(divSelector, value) {
     document.querySelector(divSelector).innerHTML = value;
 };
 
+// Indicator control
+const indicator = document.querySelector('.indicator');
+
+indicator.addEventListener('click', () => {
+    indicator.classList.toggle('indicator-on');
+});
+
 // Water level control
 const openControl = document.getElementById('openControl'),
     closeControl = document.getElementById('closeControl'),

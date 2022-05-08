@@ -231,3 +231,17 @@ body {
         color: #000;
     }
 }
+.indicator{
+    position: absolute;
+    top: 435px;
+    left: 100px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #FF4848;
+    cursor: pointer;
+    &-on {
+        background-color: #94F25B;
+    }
+}
