@@ -35,7 +35,7 @@ function waterLevelCalc () {
 
     isPumpActive ? maxOutpouringSpeed = 200 : maxOutpouringSpeed = 0;
 
-    calcBuffer = maxFillingSpeed * (openControl.value / 100) - maxOutpouringSpeed * (closeControl.value / 100);
+    calcBuffer = waterLevelHeight;
     
     if (calcBuffer <= 0) {
         // maxOutpouringSpeed = 0;
@@ -46,7 +46,7 @@ function waterLevelCalc () {
         waterLevelHeight -= maxOutpouringSpeed * (closeControl.value / 100);
     }
     if (calcBuffer > 0 && calcBuffer < 2000) {
-        waterLevelHeight += calcBuffer;
+        waterLevelHeight += maxFillingSpeed * (openControl.value / 100) - maxOutpouringSpeed * (closeControl.value / 100);
     }
 
    /*  // Active pump
