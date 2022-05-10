@@ -25,13 +25,50 @@ indicator.addEventListener('click', () => {
 const openControl = document.getElementById('openControl'),
       closeControl = document.getElementById('closeControl'),
       waterLevel = document.getElementById('waterLevel'),
-      levelHeight = document.querySelector('.waterLevel').offsetHeight,
-      maxFillingSpeed = 200;
+      levelHeight = document.querySelector('.waterLevel').offsetHeight;
+let waterLevelHeight = 0
 
-let waterLevelHeight = 0;
 function waterLevelCalc () {
+    let maxFillingSpeed = 200,
+        maxOutpouringSpeed,
+        calcBuffer;
+
+    isPumpActive ? maxOutpouringSpeed = 200 : maxOutpouringSpeed = 0;
+
+    calcBuffer = maxFillingSpeed * (openControl.value / 100) - maxOutpouringSpeed * (closeControl.value / 100);
+    
+    if (calcBuffer <= 0) {
+        // maxOutpouringSpeed = 0;
+        waterLevelHeight += maxFillingSpeed * (openControl.value / 100);
+    }
+    if (calcBuffer >= 2000) {
+        // maxFillingSpeed = 0;
+        waterLevelHeight -= maxOutpouringSpeed * (closeControl.value / 100);
+    }
+    if (calcBuffer > 0 && calcBuffer < 2000) {
+        waterLevelHeight += calcBuffer;
+    }
+
+   /*  // Active pump
+    if (isPumpActive) {
+        // underflow condition
+        if ((maxFillingSpeed * (openControl.value / 100) - maxOutpouringSpeed * (closeControl.value / 100)) < 0) {
+            maxOutpouringSpeed = 0;
+            waterLevelHeight = waterLevelHeight;
+        } else {
+            waterLevelHeight += maxFillingSpeed * (openControl.value / 100) - maxOutpouringSpeed * (closeControl.value / 100);
+        }
+    } else {
+        // overflow condition
+        if ((waterLevelHeight + maxFillingSpeed * (openControl.value / 100)) < 2000) {
+            waterLevelHeight += maxFillingSpeed * (openControl.value / 100);
+        } else {
+            maxFillingSpeed = 0;
+            waterLevelHeight = waterLevelHeight;
+        }
+    } */
     content('#L', waterLevelHeight);
-    waterLevelHeight += maxFillingSpeed * (openControl.value / 100);
+    // Output convertation
     waterLevel.style.height = levelHeight - waterLevelHeight * (levelHeight / 2000) + "px";
 }
 
