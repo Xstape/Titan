@@ -13,20 +13,20 @@ function content(divSelector, value) {
 
 // Indicator control
 const indicator = document.querySelector('.indicator');
-let pumpActive = false;
+let isPumpActive = false;
 
 indicator.addEventListener('click', () => {
     indicator.classList.toggle('indicator-on');
-    pumpActive ? pumpActive = false : pumpActive = true;
-    console.log(pumpActive)
+    isPumpActive ? isPumpActive = false : isPumpActive = true;
+    console.log(isPumpActive)
 });
 
 // Water level control
 const openControl = document.getElementById('openControl'),
-    closeControl = document.getElementById('closeControl'),
-    waterLevel = document.getElementById('waterLevel'),
-    levelHeight = document.querySelector('.waterLevel').offsetHeight,
-    maxFillingSpeed = 200;
+      closeControl = document.getElementById('closeControl'),
+      waterLevel = document.getElementById('waterLevel'),
+      levelHeight = document.querySelector('.waterLevel').offsetHeight,
+      maxFillingSpeed = 200;
 
 let waterLevelHeight = 0;
 function waterLevelCalc () {
