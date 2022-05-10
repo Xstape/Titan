@@ -13,9 +13,12 @@ function content(divSelector, value) {
 
 // Indicator control
 const indicator = document.querySelector('.indicator');
+let pumpActive = false;
 
 indicator.addEventListener('click', () => {
     indicator.classList.toggle('indicator-on');
+    pumpActive ? pumpActive = false : pumpActive = true;
+    console.log(pumpActive)
 });
 
 // Water level control
